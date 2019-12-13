@@ -1,0 +1,44 @@
+$height: 2em;
+
+.header {
+  position: fixed;
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid #7d7d7d;
+  height: $height;
+  margin: 0;
+  justify-content: space-between;
+  align-items: center;
+  font-size: $height - 1em;
+  z-index: 10000;
+  background: #fff;
+
+  & p {
+    margin: 0;
+    padding: 0;
+  }
+
+  & .title {
+    padding-left: 25px;
+  }
+
+  & .user {
+    padding-right: 25px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+
+    & p {
+      margin-left: 10px;
+    }
+
+    & .btn-sm {
+      padding: 1px;
+    }
+  }
+}
+
+.page {
+  top: $height;
+  position: relative;
+}
