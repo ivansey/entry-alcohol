@@ -32,7 +32,7 @@ class Index extends React.Component {
     };
 
     returnList = () => {
-        if (this.state.list !== []) {
+        if (this.state.list !== [{}]) {
             return this.state.list.map((auto) => {
                 return <div className="auto-card" key={auto._id}>
                     {
