@@ -125,7 +125,7 @@ app.post("/api/v1/auto/get", (req, res) => {
     autoModel.findOne({_id: req.body._id}).then((data) => {
         if (data.model === undefined) {
             res.json({
-                response: "NOT_FOUND", data: [{}]
+                response: "NOT_FOUND", data: [{model: "Нет авто"}]
             });
         }
 
@@ -140,7 +140,7 @@ app.post("/api/v1/auto/search", (req, res) => {
         autoModel.find({}).sort({_id: -1}).then((data) => {
             if (data.length === 0) {
                 res.json({
-                    response: "NOT_FOUND", data: {}
+                    response: "NOT_FOUND", data: []
                 });
             }
 
