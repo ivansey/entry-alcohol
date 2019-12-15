@@ -11,7 +11,7 @@ class Index extends React.Component {
         }
 
         this.state = {
-            list: [],
+            list: [{}],
             response: "LOADING",
         };
 
