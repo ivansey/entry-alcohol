@@ -1,5 +1,88 @@
-.card {
+.auto-card {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+
+  & .card-body {
+    width: 100%;
+
+    & .title {
+      margin-bottom: 20px;
+      font-size: 2em;
+      font-weight: bold;
+    }
+
+    & .cost {
+      font-size: 1.25em;
+      font-weight: bold;
+    }
+  }
+
   & img {
-    width: 500px;
+    width: 300px;
+  }
+}
+
+.auto-card-page {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+
+  & .title-bar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 2em;
+    font-weight: bold;
+  }
+
+  & .btn-group {
+    width: max-content;
+  }
+
+  & .card-body {
+    display: flex;
+    flex-direction: row;
+
+    & img {
+      width: 60%;
+      height: 350px;
+      background-size: cover;
+    }
+
+    & .info {
+      width: 40%;
+    }
+  }
+}
+
+.list {
+  width: 100%;
+}
+
+.rates {
+  width: 100%;
+  text-align: center;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.rate-card {
+  width: 100%;
+  padding: 20px;
+  text-align: left;
+  margin-bottom: 50px;
+
+  & .card-title {
+    font-size: 1.5em;
+    font-weight: bold;
+
+    & .btn-group {
+      margin-left: 25px;
+    }
   }
 }

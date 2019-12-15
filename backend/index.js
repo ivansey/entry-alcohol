@@ -48,7 +48,7 @@ app.post("/api/v1/users/reg", (req, res) => {
             } else {
                 let user = new usersModel({
                     email: req.body.email,
-                    type: "user",
+                    type: "USER",
                     pass: md5(req.body.pass),
                 });
                 user.save();
@@ -114,7 +114,7 @@ app.post("/api/v1/users/auth/get", (req, res) => {
             res.json({
                 response: "USER_FOUND", data: {
                     _id: data._id,
-                    email: data.email
+                    email: data.email,
                 }
             });
         });
@@ -236,12 +236,12 @@ app.post("/api/v1/auto/edit", (req, res) => {
 app.post("/api/v1/auto/rate/get", (req, res) => {
     rateModel.find({idAuto: req.body._id}).then((data) => {
         if (data.length === 0) {
-            res.json({
-                response: "NOT_FOUND", data: {}
+            return res.json({
+                response: "NOT_FOUND", data: []
             });
         }
 
-        res.json({
+        return res.json({
             response: "OK", data: data
         })
     })
@@ -326,4 +326,21 @@ app.post("/api/v1/storage/image/upload", (req, res) => {
 
 // app.post("/storage/image/")
 
-app.listen(PORT, () => console.log("Server started on port " + PORT));
+app.listen(PORT, () => {
+    usersModel.find({type: "ADMIN"}).then((data) => {
+        if (data.length === 0) {
+            console.error("Not found admin user\nCreate admin user...");
+            let user = new usersModel({
+                email: "admin",
+                pass: md5("admin"),
+                type: "ADMIN",
+            });
+            user.save().then(() => {
+                console.log("Add admin user\nLogin: admin\nPassword: admin");
+            }).catch((err) => {
+                console.error("Error add admin user\n" + err);
+            });
+        }
+    });
+    console.log("Server started on port " + PORT);
+});

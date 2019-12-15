@@ -7,14 +7,18 @@
   position: fixed;
   display: flex;
   width: 100%;
-  border-bottom: 1px solid #7d7d7d;
   height: 2em;
   margin: 0;
   justify-content: space-between;
   align-items: center;
   font-size: 1em;
   z-index: 10000;
-  background: #fff; }
+  background: #007bff;
+  color: #fff; }
+  .header .btn {
+    color: #fff; }
+    .header .btn:hover, .header .btn:focus {
+      color: #fff; }
   .header p {
     margin: 0;
     padding: 0; }
@@ -39,11 +43,69 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column; }
+  flex-direction: column;
+  width: 100%; }
   .page img {
     width: 100%; }
 
-.card img {
-  width: 500px; }
+.auto-card {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: row; }
+  .auto-card .card-body {
+    width: 100%; }
+    .auto-card .card-body .title {
+      margin-bottom: 20px;
+      font-size: 2em;
+      font-weight: bold; }
+    .auto-card .card-body .cost {
+      font-size: 1.25em;
+      font-weight: bold; }
+  .auto-card img {
+    width: 300px; }
+
+.auto-card-page {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column; }
+  .auto-card-page .title-bar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 2em;
+    font-weight: bold; }
+  .auto-card-page .btn-group {
+    width: max-content; }
+  .auto-card-page .card-body {
+    display: flex;
+    flex-direction: row; }
+    .auto-card-page .card-body img {
+      width: 60%;
+      height: 350px;
+      background-size: cover; }
+    .auto-card-page .card-body .info {
+      width: 40%; }
+
+.list {
+  width: 100%; }
+
+.rates {
+  width: 100%;
+  text-align: center; }
+  .rates:last-child {
+    margin-bottom: 0; }
+
+.rate-card {
+  width: 100%;
+  padding: 20px;
+  text-align: left;
+  margin-bottom: 50px; }
+  .rate-card .card-title {
+    font-size: 1.5em;
+    font-weight: bold; }
+    .rate-card .card-title .btn-group {
+      margin-left: 25px; }
 
 /*# sourceMappingURL=App.css.map */

@@ -33,22 +33,22 @@ class Index extends React.Component {
 
     returnList = () => {
         return this.state.list.map((auto) => {
-            return <div className="card" key={auto._id}>
+            return <div className="auto-card" key={auto._id}>
                 {
                     auto.image !== undefined
                         ? <img src={auto.image} alt={auto.model} className="card-img-top"/>
                         : null
                 }
                 <div className="card-body">
-                    <p className="card-title">{auto.model} - {auto.cost} RUB</p>
-                    <br/>
+                    <p className="title">{auto.model}</p>
                     <ul className="list-unstyled">
                         <li>Производитель: {auto.vendor}</li>
                         <li>Цвет: {auto.color}</li>
                         <li>Годы производства: ({auto.yearOut}-{auto.yearIn})</li>
                         <li>Тип двигателя: {this.returnEngineType(auto.engineType)}</li>
                     </ul>
-                    <button className="btn btn-primary" onClick={() => this.props.history.push("/auto/" + auto._id)}>Открыть</button>
+                    <p className="cost">{auto.cost} RUB</p>
+                    <button className="btn btn-primary btn-block" onClick={() => this.props.history.push("/auto/" + auto._id)}>Открыть</button>
                 </div>
             </div>
         });
@@ -63,7 +63,7 @@ class Index extends React.Component {
     render() {
         return <div className="page">
             <h1>Список авто</h1>
-            <button className="btn btn-primary" onClick={() => {this.props.history.push("/add")}}>Добавить авто</button>
+            <button className="btn btn-primary btn-block" onClick={() => {this.props.history.push("/add")}}>Добавить авто</button>
             <br/>
             <div className="list">
                 {this.returnList()}

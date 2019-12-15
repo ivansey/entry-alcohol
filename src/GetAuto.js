@@ -20,7 +20,7 @@ class GetAuto extends React.Component {
         this.get = this.get.bind(this);
         this.checkToken = this.checkToken.bind(this);
         this.delete = this.delete.bind(this);
-        this.rateList = this.rateList.bind(this);
+        this.returnRateList = this.returnRateList.bind(this);
         this.getRateList = this.getRateList.bind(this);
 
         this.get();
@@ -87,36 +87,43 @@ class GetAuto extends React.Component {
         this.setState({modalDeleteOpen: false});
     };
 
-    rateList = () => {
-        return this.state.rateList.map((rate) => {
-            return <div className="card" key={rate._id}>
-                <div className="card-body">
-                    <p className="card-title">{rate.cost} RUB</p>
-                    <br/>
-                    <div>
-                        {rate.description}
-                    </div>
-                    <div className="btn-group">
-                        {
-                            rate.idUser === this.state.idUser
-                                ? <button className="btn btn-danger">Удаление</button>
-                                : null
-                        }
-                        {
-                            this.state.statusUser === "AUTHOR"
-                                ? <button className="btn btn-primary">Принять ставку</button>
-                                : null
-                        }
+    returnRateList = () => {
+        if (this.state.rateList !== []) {
+            return this.state.rateList.map((rate) => {
+                return <div className="rate-card" key={rate._id}>
+                    <div className="card-body">
+                        <p className="card-title">
+                            {rate.cost} RUB
+                            <div className="btn-group">
+                                {
+                                    rate.idUser === this.state.idUser
+                                        ? <button className="btn btn-danger btn-block btn-sm">Удаление</button>
+                                        : null
+                                }
+                                {
+                                    this.state.statusUser === "AUTHOR"
+                                        ? <button className="btn btn-primary btn-block btn-sm">Принять ставку</button>
+                                        : null
+                                }
+                            </div>
+                        </p>
+                        <div>
+                            {rate.description}
+                        </div>
                     </div>
                 </div>
-            </div>
-        });
+            });
+        } else {
+            return <div className="alert alert-info">Ставок нет</div>;
+        }
     };
 
     getRateList = () => {
         axios.post("/api/v1/auto/rate/get", {_id: this.props.match.params._id}).then((data) => {
-            this.setState({rateList: data.data.data});
-            console.log(this.state.rateList);
+            if (data.data.data !== []) {
+                this.setState({rateList: data.data.data});
+                console.log(this.state.rateList);
+            }
         })
     };
 
@@ -128,45 +135,55 @@ class GetAuto extends React.Component {
                 style={this.modalProperty}
                 contentLabel="Подверждение удаления"
             >
-                <button className="btn btn-danger" onClick={this.delete}>Подтвердаю удаление</button>
+                <button className="btn btn-danger btn-block" onClick={this.delete}>Подтвердаю удаление</button>
             </Modal>
-            <div className="card">
-                {
-                    this.state.data.image !== undefined
-                        ? <img src={this.state.data.image} alt={this.state.data.model} className="card-img-top"/>
-                        : null
-                }
+            <div className="auto-card-page">
+                <div className="title-bar">
+                    <p className="title">{this.state.data.model}</p>
+                    <p className="cost">{this.state.data.cost} RUB</p>
+                </div>
+                <div className="btn-group" role="group" aria-label="Действия">
+                    {
+                        this.state.statusUser === "USER"
+                            ? <button className="btn btn-primary" onClick={() => {this.props.history.push("/auto/" + this.state.data._id + "/rate/add")}}>Оставить ставку</button>
+                            : null
+                    }
+                    {
+                        this.state.statusUser === "AUTHOR"
+                            ? <button className="btn btn-primary" onClick={() => {this.props.history.push("/auto/" + this.state.data._id + "/edit")}}>Редактировать</button>
+                            : null
+                    }
+                    {
+                        this.state.statusUser === "AUTHOR"
+                            ? <button className="btn btn-danger" onClick={this.openModal}>Удалить</button>
+                            : null
+                    }
+                </div>
                 <div className="card-body">
-                    <p className="card-title">{this.state.data.model} - {this.state.data.cost} RUB</p>
-                    <div className="btn-group" role="group" aria-label="Действия">
-                        {
-                            this.state.statusUser === "USER"
-                                ? <button className="btn btn-primary" onClick={() => {this.props.history.push("/auto/" + this.state.data._id + "/rate/add")}}>Оставить ставку</button>
-                                : null
-                        }
-                        {
-                            this.state.statusUser === "AUTHOR"
-                                ? <button className="btn btn-primary" onClick={() => {this.props.history.push("/auto/" + this.state.data._id + "/edit")}}>Редактировать</button>
-                                : null
-                        }
-                        {
-                            this.state.statusUser === "AUTHOR"
-                                ? <button className="btn btn-danger" onClick={this.openModal}>Удалить</button>
-                                : null
-                        }
+                    <div className="info">
+                        <dl className="dl-horizontal">
+                            <dt>Производитель</dt>
+                            <dd>{this.state.data.vendor}</dd>
+                            <dt>Цвет</dt>
+                            <dd>{this.state.data.color}</dd>
+                            <dt>Годы производства</dt>
+                            <dd>{this.state.data.yearOut} - {this.state.data.yearIn}</dd>
+                            <dt>Тип двигателя</dt>
+                            <dd>{this.returnEngineType(this.state.data.engineType)}</dd>
+                        </dl>
                     </div>
-                    <br/>
-                    <br/>
-                    <ul className="list-unstyled">
-                        <li>Производитель: {this.state.data.vendor}</li>
-                        <li>Цвет: {this.state.data.color}</li>
-                        <li>Годы производства: ({this.state.data.yearOut}-{this.state.data.yearIn})</li>
-                        <li>Тип двигателя: {this.returnEngineType(this.state.data.engineType)}</li>
-                    </ul>
+                    {
+                        this.state.data.image !== undefined
+                            ? <img src={this.state.data.image} alt={this.state.data.model} className="card-img-top"/>
+                            : null
+                    }
                 </div>
             </div>
             <br/>
-            {this.rateList()}
+            <div className="rates">
+                <h3 className="title">Ставки</h3>
+                {this.returnRateList()}
+            </div>
             {
                 this.state.response === "DELETED"
                     ? <Redirect to="/"/>
