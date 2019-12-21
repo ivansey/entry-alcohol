@@ -48,10 +48,14 @@
   .page img {
     width: 100%; }
 
+.card .card-button-bottom {
+  width: 100%;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0; }
+
 .card.autoCard {
   width: 25%;
-  display: flex;
-  flex-direction: row; }
+  display: flex; }
   .card.autoCard .card-body {
     width: 100%; }
     .card.autoCard .card-body .title {

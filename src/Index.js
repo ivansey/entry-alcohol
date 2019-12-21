@@ -47,7 +47,7 @@ class Index extends React.Component {
                     }
                     <div className="card-body">
                         <p className="title">{auto.model}</p>
-                        <ul className="list-unstyled">Edit auto card list
+                        <ul className="list-unstyled">
                             <li>Производитель: {auto.vendor}</li>
                             <li>Цвет: {auto.color}</li>
                             <li>Год производства: {auto.yearOut}</li>

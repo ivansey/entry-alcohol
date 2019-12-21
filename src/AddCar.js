@@ -136,8 +136,8 @@ class AddCar extends React.Component {
                             </select>
                         </div>
                         <div className="card">
-                            <div className="card-body">
-                                <form onSubmit={this.handleUploadImage}>
+                            <form onSubmit={this.handleUploadImage}>
+                                <div className="card-body">
                                     <div className="form-group">
                                         <label htmlFor="photo">Фото</label>
                                         <input type="file" className="form-control-file" name="photo" ref={(ref) => {
@@ -145,9 +145,6 @@ class AddCar extends React.Component {
                                         }}/>
                                     </div>
                                     <div className="form-group">
-                                        <div className="form-group">
-                                            <button className="btn btn-primary">Загрузка фото</button>
-                                        </div>
                                         <div className="form-group">
                                             {
                                                 this.state.imageResponse === "LOADING"
@@ -161,23 +158,22 @@ class AddCar extends React.Component {
                                             }
                                         </div>
                                     </div>
-                                </form>
-                            </div>
-                        </div>
-                        <br/>
-                        <div className="form-group">
-                            <button type="button" className="btn btn-primary" onClick={this.add}>Создание</button>
+                                </div>
+                                <button className="btn btn-primary card-button-bottom">Загрузка фото</button>
+                            </form>
                         </div>
                         <div className="form-group">
                             {
                                 this.state.response === "DONE"
                                     ?
-                                    <div className="alert alert-success">Создано <Redirect to={"/auto/" + this.state._id}/></div>
+                                    <div className="alert alert-success">Создано <Redirect
+                                        to={"/auto/" + this.state._id}/></div>
                                     : null
                             }
                         </div>
                     </form>
                 </div>
+                <button type="button" className="btn btn-primary card-button-bottom" onClick={this.add}>Создание</button>
             </div>
         </div>
     }
