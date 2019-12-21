@@ -39,7 +39,7 @@ class Index extends React.Component {
     returnList = () => {
         if (this.state.list !== [{}]) {
             return this.state.list.map((auto) => {
-                return <div className="card" key={auto._id}>
+                return <div className="card autoCard" key={auto._id}>
                     {
                         auto.image !== undefined
                             ? <img src={auto.image} alt={auto.model} className="card-img-top"/>
@@ -47,10 +47,10 @@ class Index extends React.Component {
                     }
                     <div className="card-body">
                         <p className="title">{auto.model}</p>
-                        <ul className="list-unstyled">
+                        <ul className="list-unstyled">Edit auto card list
                             <li>Производитель: {auto.vendor}</li>
                             <li>Цвет: {auto.color}</li>
-                            <li>Годы производства: ({auto.yearOut}-{auto.yearIn})</li>
+                            <li>Год производства: {auto.yearOut}</li>
                             <li>Тип двигателя: {this.returnEngineType(auto.engineType)}</li>
                         </ul>
                         <p className="cost">{auto.cost} RUB</p>
