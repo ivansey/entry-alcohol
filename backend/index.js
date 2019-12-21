@@ -101,25 +101,26 @@ app.post("/api/v1/users/get", (req, res) => {
 
 app.post("/api/v1/users/auth/get", (req, res) => {
     userSessionModel.find({token: req.body.token}).then(data => {
+        console.log(data);
         if (data.length === 0) {
-            res.json({
+            return res.json({
                 response: "NOT_ACCESS", data: {
                     _id: null,
                     email: null,
                     type: "GUEST",
                 }
             });
-        }
-
-        usersModel.findById(data[0].idUser).then(data => {
-            res.json({
-                response: "USER_FOUND", data: {
-                    _id: data._id,
-                    email: data.email,
-                    type: data.type,
-                }
+        } else {
+            usersModel.findById(data[0].idUser).then(data => {
+                return res.json({
+                    response: "USER_FOUND", data: {
+                        _id: data._id,
+                        email: data.email,
+                        type: data.type,
+                    }
+                });
             });
-        });
+        }
     });
 });
 

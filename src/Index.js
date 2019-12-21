@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import cookies from "react-cookies";
 import {withRouter} from "react-router-dom";
 
 class Index extends React.Component {
@@ -14,12 +15,15 @@ class Index extends React.Component {
             list: [{}],
             response: "LOADING",
             userType: "GUEST",
+            idUser: null,
         };
 
         this.getList = this.getList.bind(this);
         this.returnList = this.returnList.bind(this);
+        this.getUserInfo = this.getUserInfo.bind(this);
 
         this.getList();
+        this.getUserInfo();
     }
 
     returnEngineType = (type) => {
@@ -70,8 +74,8 @@ class Index extends React.Component {
     getUserInfo = () => {
         axios.post("/api/v1/users/auth/get", {token: cookies.load("token")}).then((data) => {
             if (data.data.response === "USER_FOUND") {
-                this.setState({idUser: data.data._id}, () => {
-
+                this.setState({idUser: data.data.data._id, userType: data.data.data.type}, () => {
+                    console.log(data.data);
                 });
             }
         });
@@ -80,7 +84,11 @@ class Index extends React.Component {
     render() {
         return <div className="page">
             <h1>Список авто</h1>
-            <button className="btn btn-primary btn-block" onClick={() => {this.props.history.push("/add")}}>Добавить авто</button>
+            {
+                this.state.userType === "ADMIN"
+                    ? <button className="btn btn-primary btn-block" onClick={() => {this.props.history.push("/add")}}>Добавить авто</button>
+                    : null
+            }
             <br/>
             <div className="list">
                 {this.returnList()}
