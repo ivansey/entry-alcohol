@@ -13,6 +13,7 @@ class Index extends React.Component {
         this.state = {
             list: [{}],
             response: "LOADING",
+            userType: "GUEST",
         };
 
         this.getList = this.getList.bind(this);
@@ -34,7 +35,7 @@ class Index extends React.Component {
     returnList = () => {
         if (this.state.list !== [{}]) {
             return this.state.list.map((auto) => {
-                return <div className="auto-card" key={auto._id}>
+                return <div className="card" key={auto._id}>
                     {
                         auto.image !== undefined
                             ? <img src={auto.image} alt={auto.model} className="card-img-top"/>
@@ -49,10 +50,10 @@ class Index extends React.Component {
                             <li>Тип двигателя: {this.returnEngineType(auto.engineType)}</li>
                         </ul>
                         <p className="cost">{auto.cost} RUB</p>
-                        <button className="btn btn-primary btn-block"
-                                onClick={() => this.props.history.push("/auto/" + auto._id)}>Открыть
-                        </button>
                     </div>
+                    <button className="btn btn-primary btn-block card-button-bottom"
+                            onClick={() => this.props.history.push("/auto/" + auto._id)}>Открыть
+                    </button>
                 </div>
             });
         } else {
@@ -63,6 +64,16 @@ class Index extends React.Component {
     getList = () => {
         axios.post("/api/v1/auto/search", {search: ""}).then((data) => {
             this.setState({list: data.data.data}, () => console.log(this.state));
+        });
+    };
+
+    getUserInfo = () => {
+        axios.post("/api/v1/users/auth/get", {token: cookies.load("token")}).then((data) => {
+            if (data.data.response === "USER_FOUND") {
+                this.setState({idUser: data.data._id}, () => {
+
+                });
+            }
         });
     };
 
