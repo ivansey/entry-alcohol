@@ -105,7 +105,8 @@ app.post("/api/v1/users/auth/get", (req, res) => {
             res.json({
                 response: "NOT_ACCESS", data: {
                     _id: null,
-                    email: null
+                    email: null,
+                    type: "GUEST",
                 }
             });
         }
@@ -115,6 +116,7 @@ app.post("/api/v1/users/auth/get", (req, res) => {
                 response: "USER_FOUND", data: {
                     _id: data._id,
                     email: data.email,
+                    type: data.type,
                 }
             });
         });
