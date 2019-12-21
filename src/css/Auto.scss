@@ -1,6 +1,5 @@
-.auto-card {
-  width: 100%;
-  padding: 20px;
+.card {
+  width: 25%;
   display: flex;
   flex-direction: row;
 
@@ -21,6 +20,11 @@
 
   & img {
     width: 300px;
+  }
+
+  & .card-button-bottom {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
   }
 }
 
@@ -60,6 +64,10 @@
 
 .list {
   width: 100%;
+
+  display: flex;
+  justify-content: left;
+  flex-wrap: wrap;
 }
 
 .rates {
