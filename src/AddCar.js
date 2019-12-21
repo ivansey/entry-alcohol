@@ -123,14 +123,9 @@ class AddCar extends React.Component {
                                    onChange={this.handleCost}/>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="yearOut">Год начала производства</label>
+                            <label htmlFor="yearOut">Год производства</label>
                             <input type="number" className="form-control" placeholder="Год" name="yearOut"
                                    onChange={this.handleYearOut}/>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="yearIn">Год окончания производства</label>
-                            <input type="number" className="form-control" placeholder="Год" name="yearIn"
-                                   onChange={this.handleYearIn}/>
                         </div>
                         <div className="form-group">
                             <label htmlFor="engineType">Тип двигателя</label>

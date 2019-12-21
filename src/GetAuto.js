@@ -166,8 +166,8 @@ class GetAuto extends React.Component {
                             <dd>{this.state.data.vendor}</dd>
                             <dt>Цвет</dt>
                             <dd>{this.state.data.color}</dd>
-                            <dt>Годы производства</dt>
-                            <dd>{this.state.data.yearOut} - {this.state.data.yearIn}</dd>
+                            <dt>Год производства</dt>
+                            <dd>{this.state.data.yearOut}</dd>
                             <dt>Тип двигателя</dt>
                             <dd>{this.returnEngineType(this.state.data.engineType)}</dd>
                         </dl>
