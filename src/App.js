@@ -18,6 +18,7 @@ import AddCar from "./AddCar";
 import GetAuto from "./GetAuto";
 import EditAuto from "./EditAuto";
 import AddRate from "./AddRate";
+import LogOut from "./LogOut";
 
 class App extends React.Component {
     render() {
@@ -27,6 +28,7 @@ class App extends React.Component {
                     <Header/>
                     <Route path="/" exact component={Index}/>
                     <Route path="/login" component={Login}/>
+                    <Route path="/logout" component={LogOut}/>
                     <Route path="/reg" component={Reg}/>
                     <Route path="/user/me/info" component={UserInfo}/>
                     <Route path="/add" component={AddCar}/>
