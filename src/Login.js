@@ -50,15 +50,15 @@ class Login extends React.Component {
                     <form>
                         <div className="form-group">
                             <label htmlFor="email">EMail</label>
-                            <input type="text" className="form-control" placeholder="Email" name="email" onChange={this.handleEmail}/>
+                            <input type="text" className="form-control" placeholder="Email" name="email"
+                                   onChange={this.handleEmail}/>
                         </div>
                         <div className="form-group">
                             <label htmlFor="password">Пароль</label>
-                            <input type="password" className="form-control" placeholder="Пароль" name="password" onChange={this.handlePass}/>
+                            <input type="password" className="form-control" placeholder="Пароль" name="password"
+                                   onChange={this.handlePass}/>
                         </div>
-                        <div className="form-group">
-                            <button className="btn btn-primary" type="button" onClick={this.login}>Вход</button>
-                        </div>
+
                         {
                             this.state.response === "DONE"
                                 ? <div className="alert alert-success">Вход выполнен <Redirect to="/?login=done"/></div>
@@ -76,8 +76,8 @@ class Login extends React.Component {
                         }
                     </form>
                 </div>
+                <button className="btn btn-primary card-button-bottom" type="button" onClick={this.login}>Вход</button>
             </div>
-
         </div>
     }
 }

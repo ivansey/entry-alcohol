@@ -53,9 +53,6 @@ class Reg extends React.Component {
                             <label htmlFor="password">Пароль</label>
                             <input type="password" className="form-control" placeholder="Пароль" name="password" onChange={this.handlePass}/>
                         </div>
-                        <div className="form-group">
-                            <button className="btn btn-primary" type="button" onClick={this.reg}>Регистрация</button>
-                        </div>
                         {
                             this.state.response === "DONE"
                                 ? <div className="alert alert-success">Регистрация выполнена <Redirect to="/login"/></div>
@@ -68,6 +65,7 @@ class Reg extends React.Component {
                         }
                     </form>
                 </div>
+                <button className="btn btn-primary card-button-bottom" type="button" onClick={this.reg}>Регистрация</button>
             </div>
         </div>
     }
