@@ -4,6 +4,7 @@ import jquery from "jquery";
 import "popper.js/dist/popper.min";
 
 import './App.css';
+import "@mdi/font/css/materialdesignicons.min.css"
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import "bootstrap/dist/js/bootstrap.min";

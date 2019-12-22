@@ -41,12 +41,12 @@ class Header extends React.Component {
                 {
                     this.state.user.response === "OK"
                         ? <div>
-                            <p className="btn btn-link btn-sm" onClick={() => this.props.history.push("/profile")}>Профиль</p>
-                            <p className="btn btn-link btn-sm" onClick={() => this.props.history.push("/logout")}>Выход</p>
+                            <p className="btn btn-link btn-sm" onClick={() => this.props.history.push("/profile")}><span className="mdi mdi-account"/></p>
+                            <p className="btn btn-link btn-sm" onClick={() => this.props.history.push("/logout")}><span className="mdi mdi-logout"/></p>
                         </div>
                         : <div>
-                            <p className="btn btn-link btn-sm" onClick={() => this.props.history.push("/reg")}>Регистрация</p>
-                            <p className="btn btn-link btn-sm" onClick={() => this.props.history.push("/login")}>Вход</p>
+                            <p className="btn btn-link btn-sm" onClick={() => this.props.history.push("/reg")}><span className="mdi mdi-account-plus"/></p>
+                            <p className="btn btn-link btn-sm" onClick={() => this.props.history.push("/login")}><span className="mdi mdi-login"/></p>
                         </div>
                 }
             </div>
