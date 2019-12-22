@@ -41,7 +41,6 @@ class Header extends React.Component {
                 {
                     this.state.user.response === "OK"
                         ? <div className="btn-group btn-group-sm" role="group" aria-title="Действия">
-                            <button className="btn btn-link btn-sm" onClick={() => this.props.history.push("/myAuto")}>Мои авто</button>
                             <button className="btn btn-link btn-sm" onClick={() => this.props.history.push("/profile")}>Профиль</button>
                             <button className="btn btn-link btn-sm" onClick={() => this.props.history.push("/logout")}>Выход</button>
                         </div>
