@@ -39,7 +39,7 @@ class Index extends React.Component {
     returnList = () => {
         if (this.state.list !== [{}]) {
             return this.state.list.map((auto) => {
-                return <div className="card autoCard" key={auto._id}>
+                return <div className="card autoCard" key={auto._id} onClick={() => this.props.history.push("/auto/" + auto._id)}>
                     {
                         auto.image !== undefined
                             ? <img src={auto.image} alt={auto.model} className="card-img-top"/>
@@ -56,7 +56,7 @@ class Index extends React.Component {
                         <p className="cost">{auto.cost} RUB</p>
                     </div>
                     <button className="btn btn-primary btn-block card-button-bottom"
-                            onClick={() => this.props.history.push("/auto/" + auto._id)}>Открыть
+                             onClick={() => this.props.history.push("/auto/" + auto._id)}>Открыть
                     </button>
                 </div>
             });
