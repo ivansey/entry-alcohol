@@ -38,6 +38,17 @@
   top: 2em;
   position: relative; }
 
+@media (max-width: 800px) {
+  .header {
+    height: 3em;
+    font-size: 1.2em; }
+    .header .user .mdi {
+      font-size: 1.4em; }
+    .header .user .email {
+      display: none; }
+
+  .page {
+    top: 3em; } }
 .page {
   padding: 25px;
   display: flex;

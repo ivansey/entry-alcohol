@@ -1,4 +1,5 @@
 $height: 2em;
+$heightMobile: 3em;
 
 .header {
   position: fixed;
@@ -50,4 +51,25 @@ $height: 2em;
 .page {
   top: $height;
   position: relative;
+}
+
+@media (max-width: 800px) {
+  .header {
+    height: $heightMobile;
+    font-size: 1.2em;
+
+    & .user {
+      & .mdi {
+        font-size: 1.4em;
+      }
+
+      & .email {
+        display: none;
+      }
+    }
+  }
+
+  .page {
+    top: $heightMobile;
+  }
 }
