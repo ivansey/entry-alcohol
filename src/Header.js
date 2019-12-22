@@ -40,13 +40,13 @@ class Header extends React.Component {
                 <p className="email">{this.state.user.email}</p>
                 {
                     this.state.user.response === "OK"
-                        ? <div className="btn-group btn-group-sm" role="group" aria-title="Действия">
-                            <button className="btn btn-link btn-sm" onClick={() => this.props.history.push("/profile")}>Профиль</button>
-                            <button className="btn btn-link btn-sm" onClick={() => this.props.history.push("/logout")}>Выход</button>
+                        ? <div>
+                            <p className="btn btn-link btn-sm" onClick={() => this.props.history.push("/profile")}>Профиль</p>
+                            <p className="btn btn-link btn-sm" onClick={() => this.props.history.push("/logout")}>Выход</p>
                         </div>
-                        : <div className="btn-group btn-group-sm" role="group" aria-title="Действия">
-                            <button className="btn btn-link btn-sm" onClick={() => this.props.history.push("/reg")}>Регистрация</button>
-                            <button className="btn btn-link btn-sm" onClick={() => this.props.history.push("/login")}>Вход</button>
+                        : <div>
+                            <p className="btn btn-link btn-sm" onClick={() => this.props.history.push("/reg")}>Регистрация</p>
+                            <p className="btn btn-link btn-sm" onClick={() => this.props.history.push("/login")}>Вход</p>
                         </div>
                 }
             </div>
