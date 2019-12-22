@@ -55,9 +55,9 @@ class Index extends React.Component {
                         </ul>
                         <p className="cost">{auto.cost} RUB</p>
                     </div>
-                    <button className="btn btn-primary btn-block card-button-bottom"
-                             onClick={() => this.props.history.push("/auto/" + auto._id)}>Открыть
-                    </button>
+                    {/*<button className="btn btn-primary btn-block card-button-bottom"*/}
+                    {/*         onClick={() => this.props.history.push("/auto/" + auto._id)}>Открыть*/}
+                    {/*</button>*/}
                 </div>
             });
         } else {
