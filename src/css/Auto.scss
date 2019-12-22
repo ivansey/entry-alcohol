@@ -93,3 +93,15 @@
     }
   }
 }
+
+@media (max-width: 800px) {
+  .card.autoCard {
+    width: 50%;
+  }
+}
+
+@media (max-width: 440px) {
+  .card.autoCard {
+    width: 100%;
+  }
+}

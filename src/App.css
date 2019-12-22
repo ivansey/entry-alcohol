@@ -117,4 +117,11 @@
     .rate-card .card-title .btn-group {
       margin-left: 25px; }
 
+@media (max-width: 800px) {
+  .card.autoCard {
+    width: 50%; } }
+@media (max-width: 440px) {
+  .card.autoCard {
+    width: 100%; } }
+
 /*# sourceMappingURL=App.css.map */
