@@ -16,11 +16,15 @@ class Index extends React.Component {
             response: "LOADING",
             userType: "GUEST",
             idUser: null,
+            limit: 2,
+            limitStep: 2,
+            lengthData: 2,
         };
 
         this.getList = this.getList.bind(this);
         this.returnList = this.returnList.bind(this);
         this.getUserInfo = this.getUserInfo.bind(this);
+        this.plusLimit = this.plusLimit.bind(this);
 
         this.getList();
         this.getUserInfo();
@@ -66,8 +70,8 @@ class Index extends React.Component {
     };
 
     getList = () => {
-        axios.post("/api/v1/auto/search", {search: ""}).then((data) => {
-            this.setState({list: data.data.data}, () => console.log(this.state));
+        axios.post("/api/v1/auto/search", {search: "", limit: this.state.limit}).then((data) => {
+            this.setState({list: data.data.data, lengthData: data.data.lengthData}, () => console.log(this.state));
         });
     };
 
@@ -78,6 +82,12 @@ class Index extends React.Component {
                     console.log(data.data);
                 });
             }
+        });
+    };
+
+    plusLimit = () => {
+        this.setState({limit: this.state.limit + this.state.limitStep}, () => {
+            this.getList();
         });
     };
 
@@ -93,6 +103,12 @@ class Index extends React.Component {
             <div className="list">
                 {this.returnList()}
             </div>
+            <br/>
+            {
+                this.state.lengthData === this.state.limit
+                    ? <button className="btn btn-primary btn-block" onClick={() => {this.plusLimit()}}>Ещё</button>
+                    : null
+            }
         </div>
     }
 }

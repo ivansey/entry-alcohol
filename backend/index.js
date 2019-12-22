@@ -140,29 +140,35 @@ app.post("/api/v1/auto/get", (req, res) => {
 
 app.post("/api/v1/auto/search", (req, res) => {
     if (req.body.search === "") {
-        autoModel.find({}).sort({_id: -1}).then((data) => {
+        autoModel.find({}).sort({_id: -1}).limit(Number(req.body.limit)).then((data) => {
             if (data.length === 0) {
                 res.json({
-                    response: "NOT_FOUND", data: [{}]
+                    response: "NOT_FOUND",
+                    data: [{}],
                 });
             }
 
             res.json({
-                response: "OK", data: data
+                response: "OK",
+                data: data,
+                lengthData: data.length,
             });
         })
     } else {
         autoModel.find({
             $text: {$search: req.body.search},
-        }).sort({_id: -1}).then((data) => {
+        }).sort({_id: -1}).limit(Number(req.body.limit)).then((data) => {
             if (data.length === 0) {
                 res.json({
-                    response: "NOT_FOUND", data: [{}]
+                    response: "NOT_FOUND",
+                    data: [{}],
                 });
             }
 
             res.json({
-                response: "OK", data: data
+                response: "OK",
+                data: data,
+                lengthData: data.length,
             })
         })
     }
